@@ -50,7 +50,9 @@ class App extends React.Component {
     this.setState(state => ({...this.state, show: !this.state.show, selectedPrice: this.state.show ? null : data}))
   }
   render() {
-    const a = this.state.data.data;
+    const upcomingData = this.state.data.data.filter(x => differenceInDays(x.createdOn, new Date()) > 0);
+    const liveData = this.state.data.data.filter(x => differenceInDays(x.createdOn, new Date()) === 0);
+    const pastData = this.state.data.data.filter(x => differenceInDays(x.createdOn, new Date()) < 0);
     return (
       <div className="main-page">
         <h1 className="header">Manage Campaigns</h1>
@@ -84,13 +86,13 @@ class App extends React.Component {
         </Modal>
         <Tabs>
           <div label="Upcoming Campaigns">
-            {a.filter(x => differenceInDays(x.createdOn, new Date()) > 0).map(row => <ItemRow {...row} priceText="View Pricing" key={row.name} handleSelect={this.handleSelect} handleChange={this.handleChange} isCalendarOpen={row.isCalendarOpen} openCalander={this.openCalander} toggleModal={this.toggleModal} />)}
+            {upcomingData.length ? upcomingData.map(row => <ItemRow {...row} priceText="View Pricing" key={row.name} handleSelect={this.handleSelect} handleChange={this.handleChange} isCalendarOpen={row.isCalendarOpen} openCalander={this.openCalander} toggleModal={this.toggleModal} />) : <div>No Data Found</div>}
           </div>
           <div label="Live Campaigns">
-          {a.filter(x => differenceInDays(x.createdOn, new Date()) === 0).map(row => <ItemRow {...row} priceText="View Pricing" key={row.name} handleSelect={this.handleSelect} handleChange={this.handleChange} isCalendarOpen={row.isCalendarOpen} openCalander={this.openCalander} toggleModal={this.toggleModal} />)}
+          {liveData.length ? liveData.map(row => <ItemRow {...row} priceText="View Pricing" key={row.name} handleSelect={this.handleSelect} handleChange={this.handleChange} isCalendarOpen={row.isCalendarOpen} openCalander={this.openCalander} toggleModal={this.toggleModal} />) : <div>No Data Found</div>}
           </div>
           <div label="Past Campaigns">
-          {a.filter(x => differenceInDays(x.createdOn, new Date()) < 0).map(row => <ItemRow {...row} priceText="View Pricing" key={row.name} handleSelect={this.handleSelect} handleChange={this.handleChange} isCalendarOpen={row.isCalendarOpen} openCalander={this.openCalander} toggleModal={this.toggleModal} />)}
+          {pastData.length ? pastData.map(row => <ItemRow {...row} priceText="View Pricing" key={row.name} handleSelect={this.handleSelect} handleChange={this.handleChange} isCalendarOpen={row.isCalendarOpen} openCalander={this.openCalander} toggleModal={this.toggleModal} />) : <div>No Data Found</div>}
           </div>
         </Tabs>
       </div>
