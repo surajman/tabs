@@ -1,0 +1,29 @@
+.date-container, .campaign-container, .item-details, .price-container, .action-container {
+    display: inline-block;
+}
+
+img {
+    display: inline-block;
+}
+
+.main-icon {
+    width: 40px;
+}
+
+.helper-icon {
+    width: 20px;
+    position: relative;
+    top: 5px;
+}
+
+.row-container {
+    display: flex;
+    justify-content: space-between;
+    height: 4rem;
+    border-bottom: 1px solid grey;
+    padding-top: 1rem;
+}
+
+.calendar-style /deep/ .react-datepicker {
+    z-index: 1;
+}
