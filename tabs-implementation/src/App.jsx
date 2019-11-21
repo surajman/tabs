@@ -4,7 +4,7 @@ import { Tabs } from './Tabs/Tabs';
 import ItemRow from './ItemRow/ItemRow';
 import './Tabs/Tabs.css';
 import data from './data/sample.json';
-import { getUnixTime } from 'date-fns';
+import { differenceInDays } from 'date-fns';
 
 class App extends React.Component {
   constructor(props) {
@@ -48,13 +48,13 @@ class App extends React.Component {
         <h1 className="header">Manage Campaigns</h1>
       <Tabs>
         <div label="Upcoming Campaigns">
-          {a.map(row => <ItemRow {...row} priceText="View Pricing" key={row.name} handleSelect={this.handleSelect} handleChange={this.handleChange} isCalendarOpen={row.isCalendarOpen} openCalander={this.openCalander} />)}
+          {a.filter(x => differenceInDays(x.createdOn, new Date()) > 0).map(row => <ItemRow {...row} priceText="View Pricing" key={row.name} handleSelect={this.handleSelect} handleChange={this.handleChange} isCalendarOpen={row.isCalendarOpen} openCalander={this.openCalander} />)}
         </div>
         <div label="Live Campaigns">
-        {a.map(row => <ItemRow {...row} priceText="View Pricing" key={row.name} handleSelect={this.handleSelect} handleChange={this.handleChange} isCalendarOpen={row.isCalendarOpen} openCalander={this.openCalander} />)}
+        {a.filter(x => differenceInDays(x.createdOn, new Date()) === 0).map(row => <ItemRow {...row} priceText="View Pricing" key={row.name} handleSelect={this.handleSelect} handleChange={this.handleChange} isCalendarOpen={row.isCalendarOpen} openCalander={this.openCalander} />)}
         </div>
         <div label="Past Campaigns">
-        {a.map(row => <ItemRow {...row} priceText="View Pricing" key={row.name} handleSelect={this.handleSelect} handleChange={this.handleChange} isCalendarOpen={row.isCalendarOpen} openCalander={this.openCalander} />)}
+        {a.filter(x => differenceInDays(x.createdOn, new Date()) < 0).map(row => <ItemRow {...row} priceText="View Pricing" key={row.name} handleSelect={this.handleSelect} handleChange={this.handleChange} isCalendarOpen={row.isCalendarOpen} openCalander={this.openCalander} />)}
         </div>
       </Tabs>
       </div>

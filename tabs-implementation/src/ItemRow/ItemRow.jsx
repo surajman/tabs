@@ -38,7 +38,7 @@ const ItemRow = (props) => {
             <div className="action-container">
                 <img src={`${process.env.PUBLIC_URL}${csvSrc}`} className="helper-icon"></img> &nbsp; CSV &nbsp;&nbsp;
                 <img src={`${process.env.PUBLIC_URL}${statsSrc}`} className="helper-icon"></img> &nbsp; Report &nbsp;&nbsp;
-                <span onClick={() => openCalander(name)}>
+                <span className="clickable" onClick={() => openCalander(name)}>
                     <img src={`${process.env.PUBLIC_URL}${calendarSrc}`} className="helper-icon"></img> &nbsp; Schedule Again
                 </span>
                 {isCalendarOpen ? <div className="calendar-style">
