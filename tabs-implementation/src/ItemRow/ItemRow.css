@@ -2,6 +2,10 @@
     display: inline-block;
 }
 
+.price-clickable {
+    cursor: pointer;
+}
+
 img {
     display: inline-block;
 }

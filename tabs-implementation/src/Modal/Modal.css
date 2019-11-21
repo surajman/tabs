@@ -1,0 +1,38 @@
+.modal-wrapper {
+  background: white;
+  border: 1px solid #d0cccc;
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
+  position: relative;
+  transition: all .8s;
+  top: 100px;
+  left: 80%;
+}
+
+.modal-body {
+  padding: 10px 15px;
+}
+
+.modal-footer {
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  height: 35px;
+  padding: 15px;
+}
+
+.btn-cancel {
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
+.modal {
+  position: absolute;
+  min-width: 20%;
+  z-index: 99;
+}
+
+.modal-closed {
+  z-index: -1;
+}

@@ -29,3 +29,13 @@
   border: 1px solid grey;
   padding: 10px;
 }
+
+.modal-head-container, .modal-name-country-container {
+  display: inline-block;
+}
+
+.modal-price-container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 15px;
+}

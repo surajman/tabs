@@ -8,7 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 const formatDate = (epochDate) => format(epochDate, 'MMM yyyy, dd');
 
 const ItemRow = (props) => {
-    const { createdOn, region, name, csvSrc, priceText, image_url, calendarSrc, priceSrc, statsSrc, handleSelect, handleChange, openCalander, isCalendarOpen } = props;
+    const { createdOn, region, name, csvSrc, priceText, image_url, calendarSrc, priceSrc, statsSrc,  toggleModal, handleChange, openCalander, isCalendarOpen } = props;
     const timeDiff = differenceInDays(createdOn, new Date());
     return (
         <div className="row-container">
@@ -33,7 +33,7 @@ const ItemRow = (props) => {
             </div>
             <div className="price-container">
                 <img src={`${process.env.PUBLIC_URL}${priceSrc}`} className="helper-icon"></img>
-                {priceText}
+                <span className="price-clickable" onClick={() => toggleModal(name)}>{priceText}</span>
             </div>
             <div className="action-container">
                 <img src={`${process.env.PUBLIC_URL}${csvSrc}`} className="helper-icon"></img> &nbsp; CSV &nbsp;&nbsp;
